@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private GameObject deathFxPrefab;
+    [SerializeField] private GameObject _deathFxPrefab;
 
-    [SerializeField] private float speed = 2.0f;
-    [SerializeField] private float acceleration = 2.0f;
+    [SerializeField] private float _speed = 2.0f;
+    [SerializeField] private float _acceleration = 2.0f;
 
-    [SerializeField] private int health = 100;
-    [SerializeField] private int price = 20;
+    [SerializeField] private float _health = 100f;
+    [SerializeField] private float _damage = 10f;
 
     private NavMeshAgent agent;
 
@@ -20,10 +20,19 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         Transform destination = FindObjectOfType<PlayerBaseController>().transform;
 
-        agent.speed = speed;
-        agent.acceleration = acceleration;
+        agent.speed = _speed;
+        agent.acceleration = _acceleration;
         agent.destination = destination.position;
 
-        health = 100;
+        _health = 100;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.parent.TryGetComponent(out PlayerBaseController playerBaseController))
+        {
+            playerBaseController.Health -= _damage;
+            Destroy(gameObject);
+        }
     }
 }

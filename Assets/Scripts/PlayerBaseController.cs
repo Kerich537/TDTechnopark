@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerBaseController : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float _maxHealth;
+    private float _currentHealth;
+    public float Health { get { return _currentHealth; } set {  _currentHealth = value; CheckHealth(); } } 
 
-    void Update()
+    private void CheckHealth()
     {
-        
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            // Game over and restart
+        }
     }
 }
