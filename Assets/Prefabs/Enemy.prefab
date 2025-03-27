@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6017302926198864580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3456004580384987999}
+  m_Layer: 0
+  m_Name: Point To Shot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3456004580384987999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6017302926198864580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1810234908518754618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9182303135627970544
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,10 +62,11 @@ Transform:
   m_GameObject: {fileID: 9182303135627970544}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 1, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 3456004580384987999}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7342109908715913540
@@ -142,11 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c9fb7ff088e154a9644b95b10210ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathFxPrefab: {fileID: 0}
+  _pointToShotTransform: {fileID: 3456004580384987999}
   _speed: 2
   _acceleration: 2
-  _health: 100
-  _price: 20
+  _maxHealth: 100
+  _damage: 10
 --- !u!54 &6821253386770308904
 Rigidbody:
   m_ObjectHideFlags: 0

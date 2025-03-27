@@ -6,7 +6,6 @@ public class PlayerBaseController : MonoBehaviour
 {
     [SerializeField] private float _maxHealth;
     private float _currentHealth;
-    public float Health { get { return _currentHealth; } set {  _currentHealth = value; CheckHealth(); } } 
 
     private void CheckHealth()
     {
@@ -15,5 +14,11 @@ public class PlayerBaseController : MonoBehaviour
             _currentHealth = 0;
             // Game over and restart
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _currentHealth -= damage;
+        CheckHealth();
     }
 }
