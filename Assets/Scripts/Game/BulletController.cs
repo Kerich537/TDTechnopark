@@ -21,6 +21,7 @@ public class BulletController : MonoBehaviour
     {
         if (other.TryGetComponent(out EnemyController enemyController) && !_haveSplash)
         {
+            Debug.Log("A");
             enemyController.TakeDamage(_damage);
             Destroy(gameObject);
         }

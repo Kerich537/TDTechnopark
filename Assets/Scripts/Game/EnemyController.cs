@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     private float _health;
 
     [SerializeField] private float _damage = 10f;
+    [SerializeField] private float _enemyPrice;
 
     private NavMeshAgent agent;
 
@@ -44,8 +45,9 @@ public class EnemyController : MonoBehaviour
     {
         if (_health <= 0)
         {
+            FindObjectOfType<MoneyManager>().AddMoney(_enemyPrice);
             _health = 0;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
