@@ -13,6 +13,7 @@ public class TurretPlacement : MonoBehaviour
     private float _turretPrice;
 
     private GameObject _currentCell;
+    private GameObject _currentTurret;
 
     private MoneyManager _moneyManager;
 
@@ -27,6 +28,15 @@ public class TurretPlacement : MonoBehaviour
         _isTurretCreated = false;
     }
 
+    private void DestroyTurret()
+    {
+        if (_currentTurret == null)
+            return;
+
+        _currentTurret.transform.parent.GetComponent<Cell>().enabled = true;
+        Destroy(_currentTurret);
+    }
+
     private void PlaceTurret()
     {
         if (_currentCell == null)
@@ -38,6 +48,7 @@ public class TurretPlacement : MonoBehaviour
             _moneyManager.AddMoney(-_turretPrice);
 
         _newTurret.layer = _currentCell.layer;
+        _turretController.transform.parent = _currentCell.transform;
         _turretController.enabled = true;
         _turretController.GetComponent<Collider>().isTrigger = false;
         _currentCell.GetComponent<Cell>().enabled = false;
@@ -55,6 +66,10 @@ public class TurretPlacement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             PlaceTurret();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            DestroyTurret();
         }
     }
 
@@ -80,10 +95,15 @@ public class TurretPlacement : MonoBehaviour
                     _newTurret.transform.position = cell.transform.position;
                     _currentCell = cell.gameObject;
                 }
+                else if (hitInfo.collider.TryGetComponent(out TurretController turretController))
+                {
+                    _currentTurret = turretController.gameObject;
+                }
                 else
                 {
                     _newTurret.transform.position = hitInfo.point;
                     _currentCell = null;
+                    _currentTurret = null;
                 }
             }
         }

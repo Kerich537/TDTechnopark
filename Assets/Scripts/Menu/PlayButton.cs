@@ -5,8 +5,11 @@ using UnityEngine.EventSystems;
 
 public class PlayButton : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField] private GameObject _levelsMenu;
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("A");
+        _levelsMenu.SetActive(true);
+        transform.parent.gameObject.SetActive(false);
     }
 }

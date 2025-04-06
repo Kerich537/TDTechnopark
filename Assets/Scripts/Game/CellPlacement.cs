@@ -7,7 +7,7 @@ public class CellPlacement : MonoBehaviour
     [SerializeField] private GameObject _cellPrefab;
     [SerializeField] private int _height;
     [SerializeField] private int _width;
-/*
+
     private int height;
     private int width;
     private void OnDrawGizmos()
@@ -22,7 +22,7 @@ public class CellPlacement : MonoBehaviour
 
         height = _height; width = _width;
         PlaceCells();
-    }*/
+    }
 
     private void Start()
     {
